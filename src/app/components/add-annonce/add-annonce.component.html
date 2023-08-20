@@ -1,0 +1,117 @@
+<div class="site-section container" id="bg">
+    <div class="container" id="form">
+        <div class="row">
+            <div class="col-lg-12">
+                <form [formGroup]="annonceForm">
+
+                    <div style="margin-left: 5.5rem;">
+                        <div class="form-group text-center">
+                            <input type="file" accept=".png" style="visibility: hidden;"
+                                class="form-control text-center" #filePicker (change)='onImageSelected($event)'>
+                        </div>
+                        <div class="d-flex text-center" style="margin-left: 300px;">
+                            <div class="align-items-center text-center">
+                                <img style="border-radius:800px;border-style: dotted;width: 200px;height: 200px;"
+                                    [src]="imagePreview" alt="" *ngIf="imagePreview">
+                                <div class="form-group text-center">
+                                    <!-- <button type="button" style="background-color: #2769af;border-color: #2769af;" (click)="filePicker.click()" class="btn btn-success" value="Signup">Please select your annonce Image</button> -->
+                                    <button class="download-button" (click)="filePicker.click()" value="Signup">
+                                        <div class="docs"><svg class="css-i6dzq1" stroke-linejoin="round" stroke-linecap="round" fill="none" stroke-width="2" stroke="currentColor" height="20" width="20" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line y2="13" x2="8" y1="13" x1="16"></line><line y2="17" x2="8" y1="17" x1="16"></line><polyline points="10 9 9 9 8 9"></polyline></svg>Please select your annonce Image</div>
+                                        <div class="download">
+                                          <svg class="css-i6dzq1" stroke-linejoin="round" stroke-linecap="round" fill="none" stroke-width="2" stroke="currentColor" height="24" width="24" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line y2="3" x2="12" y1="15" x1="12"></line></svg>
+                                        </div>
+                                      </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" formControlName="title" placeholder="Title">
+                    </div>
+                    <div *ngIf="annonceForm.controls['title'].invalid &&
+               (annonceForm.controls['title'].dirty || 
+              annonceForm.controls['title'].touched)">
+                        <div *ngIf="annonceForm.controls['title'].errors.required" style="color: red;">
+                            Title is required
+                        </div>
+                        <div *ngIf="annonceForm.controls['title'].errors.minlength" style="color: red;">
+                            Title must have at least 5 chars
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" formControlName="description" placeholder="Description">
+                    </div>
+                    <div *ngIf="annonceForm.controls['description'].invalid &&
+              (annonceForm.controls['description'].dirty || 
+             annonceForm.controls['description'].touched)">
+                        <div *ngIf="annonceForm.controls['description'].errors.required" style="color: red;">
+                            Description is required
+                        </div>
+                        <div *ngIf="annonceForm.controls['description'].errors.minlength" style="color: red;">
+                            Description must have at least 3 chars
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" class="form-control" formControlName="price" placeholder="price">
+                    </div>
+                    <div *ngIf="annonceForm.controls['price'].invalid &&
+              (annonceForm.controls['price'].dirty || 
+             annonceForm.controls['price'].touched)">
+                        <div *ngIf="annonceForm.controls['price'].errors.required" style="color: red;">
+                            Price is required
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" class="form-control" formControlName="qty" placeholder="Quantity">
+                    </div>
+                    <div *ngIf="annonceForm.controls['qty'].invalid &&
+              (annonceForm.controls['qty'].dirty || 
+             annonceForm.controls['qty'].touched)">
+                        <div *ngIf="annonceForm.controls['qty'].errors.required" style="color: red;">
+                            Quantity is required
+                        </div>
+                        <div *ngIf="annonceForm.controls['qty'].errors.qty" style="color: red;">
+                            Quantity format invalid
+                        </div>
+                    </div>
+                    <div style="color: red;">
+                        {{errorMsg}}
+                    </div>
+
+                    <div class="form-group">
+                        <select  id="category-select" class="form-control" formControlName="category" style="cursor: pointer;">
+                            <option style="font-size: larger; color: #2769af;" value="">Select Category</option>
+                            <option>Véhicules</option>
+                            <option>Pour la Maison et Jardin</option>
+                            <option>Emploi et Services</option>
+                            <option>Immobilier</option>
+                            <option>Entreprises</option>
+                            <option>Informatique et Multimedias</option>
+                            <option>Loisirs et Divertissement</option>
+                            <option>Autres</option>
+                          </select>
+                    </div>
+
+
+                    <div *ngIf="annonceForm.controls['category'].invalid &&
+                    (annonceForm.controls['category'].dirty ||
+                   annonceForm.controls['category'].touched)">
+                    <div *ngIf="annonceForm.controls['category'].errors.required" style="color: red;">
+                       Category is required
+                    </div>
+                    <div *ngIf="annonceForm.controls['category'].errors.minlength" style="color: red;">
+                    Category invalid                </div>
+                  </div>
+                   
+
+
+                    <div class="form-group text-center">
+                        <input type="submit" (click)="addAnnounce()" style="background-color:#2769af;"
+                            [disabled]="annonceForm.invalid" class="btn btn-primary py-3 px-5" value="Add Announce">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

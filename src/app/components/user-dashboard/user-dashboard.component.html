@@ -1,0 +1,76 @@
+<div class="main-body">
+    <div class="row gutters-m container">
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-column align-items-center text-center">
+                        <img style="width: 150px;height: 150px;" src="{{connectedUser.avatar}}" alt="Admin" class="rounded-circle" width="150">
+                        <div class="mt-3">
+                            <h4></h4>
+                            <h3 style="color: #4db7bf;font-family: cursive;" class=" mb-1">{{connectedUser.firstName}} {{connectedUser.lastName}}</h3>
+                            <p class="text-muted font-size-sm"></p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-8">
+            <div class="card mb-3" id="profileEditForm">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Full Name</h6>
+                        </div>
+                        <span>{{connectedUser.firstName}} {{connectedUser.lastName}}</span>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Email</h6>
+                        </div>
+                            <span>{{connectedUser.email}}</span>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Phone</h6>
+                        </div>
+                            <span>{{connectedUser.tel}}</span>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Address</h6>
+                        </div>
+                            <span>{{connectedUser.adresse}}</span>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                aria-selected="true">My Announces</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+                aria-selected="false">My Bookings</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <app-annonces-table></app-annonces-table>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <app-reservation-table></app-reservation-table>
+        </div>
+    </div>
+</div>

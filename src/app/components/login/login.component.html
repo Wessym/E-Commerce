@@ -1,0 +1,172 @@
+<section>
+  <div class="main" style="height: 840px;">
+    <input type="checkbox" id="chk" aria-hidden="true">
+
+    <!--****************************************** SIGNUP FORM ********************************************************  -->
+    <div class="signup">
+      <form [formGroup]="userForm">
+        <label for="chk" aria-hidden="true" style="margin-top: 5px;margin-bottom: 35px;">Sign up</label>
+
+        <!-------------------------------Profile Pic--------------------------------------------------------->
+        <div style="    margin-left: 6rem;">
+          <div class="form-group text-center" style="margin-bottom: -5rem;">
+            <input type="file" accept=".png, .jpg, .jpeg" style="visibility: hidden;" class="form-control text-center" #filePicker
+              (change)='onImageSelected($event)'>
+          </div>
+          <div class="d-flex text-center">
+            <div class="align-items-center text-center">
+              <img style="border-radius:300px;border-style: dotted;width: 70px;height: 70px;" [src]="imagePreview"
+                alt="" *ngIf="imagePreview">
+              <div style="margin-top: -10px;" class="form-group text-center">
+                <button style="margin-bottom: -20px;" class="button-upload" (click)="filePicker.click()" value="Signup">
+                  <span class="button__text">Add Image</span>
+                  <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35"
+                      id="bdd05811-e15d-428c-bb53-8661459f9307" data-name="Layer 2" class="svg">
+                      <path
+                        d="M17.5,22.131a1.249,1.249,0,0,1-1.25-1.25V2.187a1.25,1.25,0,0,1,2.5,0V20.881A1.25,1.25,0,0,1,17.5,22.131Z">
+                      </path>
+                      <path
+                        d="M17.5,22.693a3.189,3.189,0,0,1-2.262-.936L8.487,15.006a1.249,1.249,0,0,1,1.767-1.767l6.751,6.751a.7.7,0,0,0,.99,0l6.751-6.751a1.25,1.25,0,0,1,1.768,1.767l-6.752,6.751A3.191,3.191,0,0,1,17.5,22.693Z">
+                      </path>
+                      <path
+                        d="M31.436,34.063H3.564A3.318,3.318,0,0,1,.25,30.749V22.011a1.25,1.25,0,0,1,2.5,0v8.738a.815.815,0,0,0,.814.814H31.436a.815.815,0,0,0,.814-.814V22.011a1.25,1.25,0,1,1,2.5,0v8.738A3.318,3.318,0,0,1,31.436,34.063Z">
+                      </path>
+                    </svg></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-------------------------------Profile Pic--------------------------------------------------------->
+
+        <div class="form-group">
+          <input type="text" class="form-control" formControlName="firstName" placeholder="First Name">
+        </div>
+        <div class="container" style="margin-top: -10px;margin-left: 40px;" *ngIf="userForm.controls['firstName'].invalid &&
+             (userForm.controls['firstName'].dirty || 
+            userForm.controls['firstName'].touched)">
+          <div *ngIf="userForm.controls['firstName'].errors.required" style="color: red;">
+            First Name is required
+          </div>
+          <div *ngIf="userForm.controls['firstName'].errors.minlength" style="color: red;">
+            First Name must have at least 3 chars
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" formControlName="lastName" placeholder="Last Name">
+        </div>
+        <div class="container" style="margin-top: -10px;margin-left: 40px;" *ngIf="userForm.controls['lastName'].invalid &&
+            (userForm.controls['lastName'].dirty || 
+           userForm.controls['lastName'].touched)">
+          <div *ngIf="userForm.controls['lastName'].errors.required" style="color: red;">
+            Last Name is required
+          </div>
+          <div *ngIf="userForm.controls['lastName'].errors.minlength" style="color: red;">
+            Last Name must have at least 3 chars
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" formControlName="adresse" placeholder="Adresse">
+        </div>
+        <div class="container" style="margin-top: -10px;margin-left: 40px;" *ngIf="userForm.controls['adresse'].invalid &&
+            (userForm.controls['adresse'].dirty || 
+           userForm.controls['adresse'].touched)">
+          <div *ngIf="userForm.controls['adresse'].errors.required" style="color: red;">
+            Adresse is required
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" formControlName="email" placeholder="Email">
+        </div>
+        <div class="container" style="margin-top: -10px;margin-left: 40px;" *ngIf="userForm.controls['email'].invalid &&
+            (userForm.controls['email'].dirty || 
+           userForm.controls['email'].touched)">
+          <div *ngIf="userForm.controls['email'].errors.required" style="color: red;">
+            Email is required
+          </div>
+          <div *ngIf="userForm.controls['email'].errors.email" style="color: red;">
+            Email format invalid
+          </div>
+        </div>
+        <div style="color: red;">
+          {{errorMsg}}
+        </div>
+
+        <div class="form-group">
+          <input type="number" class="form-control" formControlName="tel" placeholder="Phone Number">
+        </div>
+        <div class="container" style="margin-top: -10px;margin-left: 40px;" *ngIf="userForm.controls['tel'].invalid &&
+            (userForm.controls['tel'].dirty || 
+           userForm.controls['tel'].touched)">
+          <div *ngIf="userForm.controls['tel'].errors.required" style="color: red;">
+            Phone Number is required
+          </div>
+          <div *ngIf="userForm.controls['tel'].errors.max || userForm.controls['tel'].errors.min" style="color: red;">
+            Please enter a valid phone number
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" formControlName="pwd" placeholder="Password">
+        </div>
+        <div class="container" style="margin-top: -10px;margin-left: 40px;" *ngIf="userForm.controls['pwd'].invalid &&
+            (userForm.controls['pwd'].dirty || 
+           userForm.controls['pwd'].touched)">
+          <div *ngIf="userForm.controls['pwd'].errors.required" style="color: red;">
+            Password is required
+          </div>
+          <div *ngIf="userForm.controls['pwd'].errors.minlength || userForm.controls['pwd'].errors.pattern"
+            style="color: red;">
+            Password must be at least 8 characters 1 Upper Case letter 1 Special chars
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" formControlName="confirmPwd" placeholder="Confirm Password">
+        </div>
+        <div class="container" style="margin-top: -10px;margin-left: 40px;"
+          *ngIf="userForm.controls['confirmPwd'].invalid && (userForm.controls['confirmPwd'].dirty || userForm.controls['confirmPwd'].touched)">
+          <div *ngIf="userForm.controls['confirmPwd'].errors.mustMatch" class="textdanger" style="color: red;">
+            Confirm Pwd must match PWD
+          </div>
+        </div>
+        <button [disabled]="userForm.invalid" (click)="signup()">Sign up</button>
+      </form>
+    </div>
+
+    <!--********************************************* LOGIN FORM *********************************************************  -->
+
+    <!-- <div class="login">
+      <form [formGroup]="userForm" style="margin-top: 125px;">
+        <label for="chk" aria-hidden="true">Login</label>
+        <div>
+          <div>
+            <input type="number" formControlName="tel" placeholder="Phone Number">
+          </div>
+          <div class="container" style="margin-top: -10px;margin-left: 40px;"
+            *ngIf="userForm.controls['tel'].invalid && (userForm.controls['tel'].dirty || userForm.controls['tel'].touched)">
+            <div *ngIf="userForm.controls['tel'].errors.required" style="color: red;">
+              Phone Number is required
+            </div>
+            <div *ngIf="userForm.controls['tel'].errors.max || userForm.controls['tel'].errors.min" style="color: red;">
+              Please enter a valid phone number
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <input type="password" class="form-control" formControlName="pwd" placeholder="Password">
+          <div class="container" style="margin-top: -10px;margin-left: 40px;"
+            *ngIf="userForm.controls['pwd'].invalid && (userForm.controls['pwd'].dirty || userForm.controls['pwd'].touched)">
+            <div *ngIf="userForm.controls['pwd'].errors.required" style="color: red;">
+              Password is required
+            </div>
+          </div>
+        </div>
+
+        <button (click)="login()" type="submit">Login</button>
+        <div class="text-center" style="color: red;">
+          {{errorMsgs}}
+        </div>
+      </form>
+    </div> -->
+  </div>
+</section>

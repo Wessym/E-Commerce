@@ -1,0 +1,42 @@
+<div class="container-fluid">
+    <div class="inner-header">
+        
+
+        <nav class="main-menu mobile-menu">
+            <div class="logo">
+                <a routerLink="home"><img style="height: 42px; width: 133px;" src="assets/img/forsti.png" alt=""></a>
+            </div>
+            <ul style="margin-right: 40px;display: flex;align-items: center;">
+                <li><a routerLink="home" style="margin-right: 50px;">Home</a></li>
+                <li><a routerLink="Marketplace" style="margin-right: 50px;">Shop</a></li>
+                <li>
+                   
+
+                </li>
+                <div class="user-access">
+                    <!-- <a routerLink="add-annonce" class="active"> + Add Annonce</a> -->
+                    <button routerLink="add-annonce" class="btn3d">💡 Add Anounce</button>
+                </div>
+
+                <div class="header-right">
+                    <div class="user-header">
+                        <img src="{{connectedUser.avatar}}" alt="Avatar" class="avatar">
+                        <span class="user-name">{{connectedUser.firstName + " " + connectedUser.lastName}}</span>
+                        <div class="dropdown">
+                            <button class="dropdown-btn">
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-content" style="margin-left: -100px;width: 200px;">
+                                <a routerLink="user-dashboard"><img class="iconsH" src="assets/img/icons/profile.png" alt="">My Dashboard</a>
+                                <a routerLink="#" (click)="logout()"><img class="iconsH" src="assets/img/icons/logout.png" alt="">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            </ul>
+        </nav>
+    </div>
+</div>

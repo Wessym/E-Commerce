@@ -1,0 +1,67 @@
+<section class="latest-products spad">
+    <div class="container">
+
+        <div style="display: flex;flex-direction: row-reverse;align-items: center; margin-bottom: 25px;">
+            <button class="bn text-center" style="margin-left: 5px;" (click)="clearSearch()">
+                <p style="color: aliceblue;margin-top: -5px;">Clear</p>
+            </button>
+
+            <button class="bn text-center" style="margin-left: 10px;" (click)="searchByPrice()">
+                <p style="color: aliceblue;margin-top: -5px;">Search</p>
+            </button>
+
+            <input type="text" name="text" class="input" [(ngModel)]="maxPrice" placeholder="Maximum Price">
+            <input type="text" name="text" class="input" [(ngModel)]="minPrice" placeholder="Minimum Price">
+        </div>
+
+        <div class="row" id="product-list">
+            <div *ngIf="!annoncesTab" class="text-center">
+                <div id="wifi-loader">
+                    <svg class="circle-outer" viewBox="0 0 86 86">
+                        <circle class="back" cx="43" cy="43" r="40"></circle>
+                        <circle class="front" cx="43" cy="43" r="40"></circle>
+                        <circle class="new" cx="43" cy="43" r="40"></circle>
+                    </svg>
+                    <svg class="circle-middle" viewBox="0 0 60 60">
+                        <circle class="back" cx="30" cy="30" r="27"></circle>
+                        <circle class="front" cx="30" cy="30" r="27"></circle>
+                    </svg>
+                    <svg class="circle-inner" viewBox="0 0 34 34">
+                        <circle class="back" cx="17" cy="17" r="14"></circle>
+                        <circle class="front" cx="17" cy="17" r="14"></circle>
+                    </svg>
+                    <div class="text" data-text="Loading Products"></div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6 mix all dresses bags announce-border" style="margin-right: 10px;"
+                *ngFor="let x of annoncesTab">
+                <div class="single-product-item">
+                    <figure>
+                        <a href="#"><img src="{{x.image}}" alt="" style="height: 150px;"></a>
+                        <div class="p-status">new</div>
+                    </figure>
+                    <div class="product-text">
+                        <h4 class="desc-end">{{x.title}}</h4>
+                        <hr>
+                        <h6 class="desc-end">{{x.description}}</h6>
+                        <p>{{x.price}} TND</p>
+                        <h6>By: <h4 class="anouncer-name">{{x.anouncerFirstName}} {{x.anouncerLastName}}</h4>
+                        </h6>
+                    </div>
+
+                    <div class="product-text text-center">
+                        <button class="learn-more" (click)="goToAnnonceReservation(x.id)">
+                            <span class="circle" aria-hidden="true">
+                                <span class="icon arrow"></span>
+                            </span>
+                            <span class="button-text">Order Now</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Latest Product End -->

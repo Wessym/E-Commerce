@@ -1,0 +1,166 @@
+<div class="main-body">
+    <div class="row gutters-m container">
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-column align-items-center text-center">
+                        <img src="{{connectedUser.avatar}}" alt="Admin" class="rounded-circle" width="150">
+                        <div class="mt-3">
+                            <h4></h4>
+                            <p class="text-secondary mb-1">{{connectedUser.firstName}} {{connectedUser.lastName}}</p>
+                            <p class="text-muted font-size-sm"></p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-8">
+            <div class="card mb-3" id="profileEditForm">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Full Name</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            <label class="inp" for="inp">
+                                <span>{{connectedUser.firstName}} {{connectedUser.lastName}}</span>
+                            </label>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Email</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            <label class="inp" for="inp">
+                                <span>{{connectedUser.email}}</span>
+                            </label>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Phone</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            <label class="inp" for="inp">
+                                <span>{{connectedUser.tel}}</span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                aria-selected="true">Announces</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+                aria-selected="false">Users</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+                aria-selected="false">Commandes</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="">
+                <table class="table">
+                    <thead>
+                        <tr class="text-center">
+                            <th>ID</th>
+                            <th>Anouncer ID</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let m of annoncesTab" class="text-center" style="border-style: dashed;">
+                            <td>{{m._id}}</td>
+                            <td>{{m.idUser}}</td>
+                            <td>{{m.title}}</td>
+                            <td>{{m.description}}</td>
+                            <td>{{m.price}}</td>
+                            <td>{{m.qty}}</td>
+                            <td>{{m.category}}</td>
+                            <td>{{m.status}}</td>
+                            <td>
+                                <button class="confirm-btn" (click)="confirmAnnonce(m._id)">
+                                    Confirm
+                                </button>
+                                <button class="confirm-btn" (click)="deleteAnnonce(m._id)">
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="container">
+                <input type="text" [(ngModel)]="searchTerm" placeholder="Search by email" class="form-control">
+                <table class="table">
+                    <thead>
+                        <tr class="text-center">
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Adress</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let m of filteredUsers" class="text-center">
+                            <td>{{m._id}}</td>
+                            <td>{{m.firstName}}</td>
+                            <td>{{m.lastName}}</td>
+                            <td>{{m.email}}</td>
+                            <td>{{m.tel}}</td>
+                            <td>{{m.adresse}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+            <div class="container">
+                <table class="table">
+                    <thead>
+                        <tr class="text-center">
+                            <th>ID</th>
+                            <th>User ID</th>
+                            <th>Annonce ID</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let m of commandesTab" class="text-center">
+                            <td>{{m._id}}</td>
+                            <td>{{m.idUser}}</td>
+                            <td>{{m.idAnnonce}}</td>
+                            <td>{{m.status}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
